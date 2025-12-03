@@ -6,7 +6,7 @@ window.onload = function () {
   const endScreen = document.getElementById("game-end");
   const imgLogo = document.getElementById("logo-img");
   const musicButton = document.getElementById("sound");
-  const musicIcon = this.document.getElementById("music-icon");
+  const musicIcon = document.getElementById("music-icon");
   const introMusic = new Audio("assets/intromusic.mp3");
   introMusic.volume = .1
 
@@ -28,12 +28,12 @@ window.onload = function () {
   musicButton.addEventListener("click", function () {
     if (!game) {
       if (introMusic.paused) {
-        musicIcon.src = "/images/music-on.png";
+        musicIcon.src = "images/musicon.png";
         introMusic.play();
         game.isSoundOn = true;
       } else {
         introMusic.pause();
-        musicIcon.src = "/images/music-off.png";
+        musicIcon.src = "images/musicoff.png";
         game.isSoundOn = false;
       }
       return;
@@ -41,12 +41,12 @@ window.onload = function () {
 
     if (game.boardSound.paused) {
       introMusic.pause();
-      musicIcon.src = "/images/music-on.png";
+      musicIcon.src = "images/musicon.png";
       game.boardSound.play();
       game.isSoundOn = true;
     } else {
       game.boardSound.pause();
-      musicIcon.src = "/images/music-off.png";
+      musicIcon.src = "images/musicoff.png";
       game.isSoundOn = false;
     }
   });

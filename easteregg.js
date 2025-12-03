@@ -1,6 +1,6 @@
 class EasterEgg {
   constructor() {
-    this.DcComicsHeroes = ["batman-egg", "flash-egg", "greenlantern-egg", "shazan-egg", "superman-egg","wonderwoman-egg"];
+    this.DcComicsHeroes = ["batmanegg", "flashegg", "greenlanternegg", "shazanegg", "supermanegg","wonderwomanegg"];
     this.clickSound = new Audio("assets/crash.mp3");
     this.directions = [
       { dx: 3, dy: -2 }, 

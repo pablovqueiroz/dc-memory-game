@@ -18,7 +18,7 @@ class Game {
     this.characters = [
       "superman",
       "batman",
-      "wonder-woman",
+      "wonderwoman",
       "hawkgirl",
       "aquaman",
       "flash",
@@ -217,7 +217,7 @@ class Game {
     this.loseSound.pause();
     this.boardSound.pause();
 
-    if (isSoundOn) this.boardSound.play();
+    if (this.isSoundOn) this.boardSound.play();
     else this.boardSound.pause();
 
     console.log("game restarted...");

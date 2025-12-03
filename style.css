@@ -11,7 +11,7 @@ body {
 
 main {
   /* position: relative; */
-  background: url(/images/all-heroes.png) no-repeat center center;
+  background: url(images/allheroes.png) no-repeat center center;
   background-size: cover;
   box-shadow: 0 4px 8px rgba(77, 80, 216, 0.504);
   height:470px;
@@ -101,8 +101,7 @@ main {
   justify-content: space-around;
   margin-bottom: 15px;
   font-size: 1.2em;
-  color:white
-  ;
+  color:white;
 }
 
 #game-board {
@@ -111,7 +110,6 @@ main {
   gap: 10px;
   justify-content: space-evenly;
   margin-top: 20px;
-
   perspective: 1000px;
 }
 
@@ -219,7 +217,7 @@ padding: 5px 15px;
 .hero img {
   width: 150px;
   height: 150px;
-  transition: top 0.8s ease, left 0.8s ease; /
+  transition: top 0.8s ease, left 0.8s ease;
 }
 
 @keyframes explode {

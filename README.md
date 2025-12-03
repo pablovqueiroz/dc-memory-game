@@ -1,6 +1,6 @@
 # DC MEMORY GAME
 
-## [Play the Game!]()
+## [Play the Game!](https://pablovqueiroz.github.io/dc-memory-game/)
 
 ![Game Logo](/images/game-logo.png)
 
