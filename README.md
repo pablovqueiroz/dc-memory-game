@@ -238,7 +238,6 @@ List of tasks in order of priority:
 
 # Links
 
-- [Trello Link]()
 - [Slides Link]()
-- [GitHub Repository Link]()
-- [Deployment Link]()
+- [GitHub Repository Link](https://github.com/pablovqueiroz/dc-memory-game)
+- [Deployment Link](https://pablovqueiroz.github.io/dc-memory-game/)

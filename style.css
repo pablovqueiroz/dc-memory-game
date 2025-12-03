@@ -158,7 +158,6 @@ main {
 }
 
 #game-end {
-  border:  3px solid yellow;
   display: flex;
   flex-direction: column;
   height: 100%;

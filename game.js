@@ -7,13 +7,13 @@ class Game {
     this.timerId = 0;
     this.lockBoard = false;
     this.boardSound = new Audio("assets/gameboardsound.mp3");
-    this.boardSound.volume = .1
+    this.boardSound.volume = 0.1;
     this.flipSound = new Audio("assets/flip.mp3");
-    this.flipSound.volume = .5
+    this.flipSound.volume = 0.5;
     this.loseSound = new Audio("assets/youlose.wav");
-    this.loseSound.volume = .1
+    this.loseSound.volume = 0.1;
     this.winSound = new Audio("assets/youwin.wav");
-    this.winSound.volume = .1
+    this.winSound.volume = 0.1;
     this.isSoundOn = false;
     this.characters = [
       "superman",
@@ -105,7 +105,7 @@ class Game {
       this.moves--;
       document.getElementById("moves").innerText = this.moves;
 
-      if (this.moves < 0) {
+      if (this.moves <= 0) {
         this.lockBoard = true;
         setTimeout(() => {
           this.endGame(false);
@@ -166,7 +166,9 @@ class Game {
   }
 
   endGame(victory) {
-    this.boardSound.pause();
+    if (this.isSoundOn) {
+      this.boardSound.pause();
+    }
     const gameScreen = document.getElementById("game-screen");
     const endScreen = document.getElementById("game-end");
 
@@ -178,11 +180,15 @@ class Game {
 
     const endMessage = document.getElementById("end-message");
     if (victory) {
-      this.winSound.play();
+      if (this.isSoundOn) {
+        this.winSound.play();
+      }
       endMessage.innerText = "Congratulations! You won!";
       endMessage.style.color = "#00ff00";
     } else {
-      this.loseSound.play();
+      if (this.isSoundOn) {
+        this.loseSound.play();
+      }
       endMessage.innerText = "Game Over! Try again!";
       endMessage.style.color = "#ff0000";
     }
