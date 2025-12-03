@@ -2,7 +2,7 @@
 
 ## [Play the Game!](https://pablovqueiroz.github.io/dc-memory-game/)
 
-![Game Logo](/images/game-logo.png)
+![Game Logo](images/gamelogo.png)
 
 # Description
 
