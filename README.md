@@ -1,92 +1,220 @@
-Plano de 3 Dias
-
-# Dia 1
-
-Foco Principal:
-Setup e Lógica Básica Criar HTML/CSS base.
-
-Tarefas Chave:
-Definir os dados dos personagens (array JS).
-Criar a função para embaralhar cartas e renderizar o tabuleiro no ecrã.
-
-Prática de DOM:
-createElement(), appendChild(), addEventListener('click'), textContent.
-
-# Dia 2
-
-Foco Principal:
-Mecânica do Jogo e Feedback.
-
-Tarefas Chave:
-Implementar a lógica de virar cartas, verificar pares, contar jogadas e gerir o game over.
-Adicionar placar e timer.
-
-Prática de DOM:
-classList.add()/remove(), innerHTML (para placar), setTimeout() (para virar cartas de volta).
-
-# Dia 3
-
-Foco Principal:
-Estilo, Animações e Destaque.
-
-Tarefas Chave:
-Adicionar imagens dos heróis DC, estilizar o tabuleiro, adicionar animações CSS bonitas (virar a carta), e um ecrã de vitória final.
-
-Prática de DOM:
-Manipulação de style ou classes para animações, uso de imagens em elementos.
 
 
-# Proposta de Projeto: Jogo da Memória Temático DC Universe
 
-Objetivo: 
-Desenvolver um jogo da memória funcional e visualmente apelativo, com a temática do Universo DC, focado na prática intensiva da manipulação do DOM em JavaScript. O projeto será concluído em aproximadamente 15 horas de trabalho (3 dias), com um nível de acabamento profissional adequado para inclusão em portefólio.
+# DC MEMORY GAME
 
-# Destaques do Projeto no Meu Portefólio
-Para garantir que este projeto se destacasse para além de ser apenas 'mais um jogo da memória', foquei-me em três pilares principais que o tornam uma aplicação full-stack front-end robusta:
+## [Play the Game!]()
 
-Design Responsivo e Acessível:
-Implementei uma abordagem mobile-first, garantindo que o tabuleiro de jogo se adapta perfeitamente e oferece uma excelente experiência de utilizador tanto em dispositivos móveis como em ecrãs de computador. A flexibilidade do layout foi uma prioridade.
+![Game Logo]()
 
-Temática DC Agressiva e Imersiva:
-Mergulhei a fundo na estética do universo DC. Utilizei fundos dinâmicos que evocam Gotham City ou Metropolis, fontes temáticas específicas e, se o utilizador permitir, efeitos sonoros subtis para enriquecer a imersão na temática, tornando a experiência mais envolvente do que a de um jogo genérico.
+# Description
 
-Animações de Viragem de Carta Sofisticadas: 
-Em vez de uma simples mudança de imagem estática, utilizei transições CSS avançadas e transform (rotação em 3D) para criar uma animação fluida e visualmente apelativa quando as cartas são viradas. Isto demonstra um conhecimento prático de CSS moderno e atenção aos detalhes da interface.
+DC Memory Game is a browser-based memory matching game where players test their memory by flipping cards to find matching pairs of DC heroes. The game challenges players to match all pairs before running out of moves or time. At the end of the game, a score is calculated based on the number of successful matches and remaining moves or time. Players can restart the game to try and improve their score.
 
-No geral, o projeto foi desafiador o suficiente para me permitir aprender imenso sobre a manipulação do DOM e a gestão de eventos, mas com uma complexidade gerenciável que me permitiu concluí-lo num curto espaço de tempo e ter um resultado final visualmente impressionante."
+# Main Functionalities
 
-# Project's name
+- The player clicks Start Game.
+- The #game-intro screen disappears, and #game-screen appears.
+- The Game class creates the game board (cards) and starts the timer.
+- The player clicks on the cards.
+- Stats (Score, Moves, Time) are updated in real time.
+- When all cards are matched or time runs out, endGame() is called:
+  #game-screen hides.
+  #game-end appears with the final score.
 
-[Click here to see deployed game](http://github.com)
+# Minimum Viable Product (MVP)
 
-## Description
+The minimum features required for this DC Memory Game are:
 
-Brief description of the project
+- Start screen with game title and "Start Game" button.
+- Game board displaying 12 cards (6 pairs of DC heroes) in a grid layout.
+- Cards can be flipped to reveal the hero image.
+- Matching pairs remain visible; non-matching pairs flip back automatically.
+- Move counter that tracks the number of flips made.
+- Timer counting down the remaining time.
+- Score counter that increases when pairs are matched and decreases slightly when mismatched.
+- Game over screen showing the final score and a message indicating whether the player won or lost.
+- Restart button to replay the game.
 
-## MVP
+# Backlog
 
-_MVP definition here, list of minimum features_
+These are features I can implement after completing the MVP:
 
-## Backlog
+- Make the game fully responsive for mobile and tablet devices.
+- Include sound effects for card flips, matches, and game win/loss events.
+- Add theme variations (different backgrounds or hero sets).
+- Add more card pairs and heroes for increased difficulty.
+- Implement a high-score leaderboard to track top scores.
 
-_List of features you might implement after the MVP_
+# Technologies Used
 
-## Data structure
+- HTML
+- CSS
+- JavaScript
+- DOM Manipulation
 
-_List of classes and methods_
+# Data structure
 
-## States y States Transitions
+## game.js
 
-_List of states (views) of your game_
+### Class `Game`
 
-## Task
+The `Game` class manages a memory card game with character cards.
 
-_List of tasks in order of priority_
+### Properties
 
-## Links
+- `flippedCards` — Array storing the currently flipped cards.
+- `score` — Current player score.
+- `moves` — Number of remaining moves.
+- `remainingTime` — Remaining time on the timer.
+- `timerId` — ID of the timer used with `setInterval`.S
+- `lockBoard` — Boolean that temporarily locks the board.
+- `characters` — Array of available characters.
+- `gameCharacters` — Array with duplicated characters for matching pairs.
+
+
+## Methods
+
+### `shuffleArray()`
+
+Shuffles the `gameCharacters` array using the Durstenfeld shuffle algorithm.
+
+### `initBoard()`
+
+Initializes the game board, creating HTML elements for the cards and adding click events.
+
+### `showPreview()`
+
+Flips all cards for 3 seconds at the start of the game to show a preview.
+
+### `flipCard(card)`
+
+Handles card click logic, managing moves and checking when two cards are flipped.
+
+### `checkForMatch()`
+
+Checks if two flipped cards match, updates the score, unlocks cards, or ends the game.
+
+### `startTimer()`
+
+Starts the game timer, decrementing `remainingTime` every second.
+
+### `endGame(victory = false)`
+
+Ends the game, showing a victory or defeat screen and the final score.
+
+### `restartGame()`
+
+Restarts the game, resetting all variables, reinitializing the board, and restarting the timer.
+
+## Fuction
+
+### `marvelHeroes()` 
+
+- To play the easter egg.
+
+# script.js
+
+## Game Initialization and DOM Handling
+
+This script handles the game's start, restart, and user interface interactions.
+
+## Elements
+
+- `startButton` — The "Start Game" button element.
+- `restartButton` — The "Restart Game" button element.
+- `introScreen` — The initial introduction screen element.
+- `gameScreen` — The main game screen element.
+- `endScreen` — The game over / victory screen element.
+- `game` — Instance of the `Game` class.
+
+## Event Listeners
+
+- `startButton` — Starts the game when clicked by calling `startGame()`.
+- `restartButton` — Restarts the game when clicked by calling `resetGame()`.
+
+## Functions
+
+### `startGame()`
+
+- Hides the intro screen and shows the game screen.
+- Creates a new instance of `Game`.
+- Updates the UI with initial `moves`, `score`, and `remainingTime`.
+- Shuffles the cards, initializes the game board, shows a preview of all cards, and starts the timer.
+
+### `resetGame()`
+
+- Hides the end screen and shows the game screen.
+- Calls the `restartGame()` method on the current `Game` instance to reset the game state.
+
+# States y States Transitions
+
+The game has the following states (views):
+
+1. **Intro / Start Screen**
+   - Shows the game logo, a start button, and a subtitle.
+   - Player clicks "Start Game" to transition to the Game Screen.
+
+2. **Game Screen**
+   - Displays the game board, score, moves, and timer.
+   - Player flips cards to match pairs.
+   - The game can end in two ways:
+     - Victory: all pairs are matched.
+     - Defeat: moves run out or time expires.
+   - After the game ends, the state transitions to the End Screen.
+
+3. **End Screen**
+   - Shows a final score and a message (e.g., "Congratulations!" or "Game Over").
+   - Player can click "Restart Game" to go back to the Game Screen and start a new game.
+
+
+# Task
+
+List of tasks in order of priority:
+
+1. **Set up project structure**
+   - Create folders: `images`, `css`, `js`
+   - Create files: `index.html`, `style.css`, `game.js`, `script.js`
+
+2. **Design the HTML layout**
+   - Intro screen with logo, start button, and subtitle
+   - Game screen with stats (score, moves, timer) and game board
+   - End screen with final score, message, and restart button
+
+3. **Style the game using CSS**
+   - Layout and positioning
+   - Card dimensions, grid, and 3D flip animation
+   - Intro and End screen styling
+   - Responsive design adjustments
+
+4. **Implement game logic in JavaScript**
+   - Create `Game` class
+   - Define properties (score, moves, timer, flipped cards)
+   - Initialize game board and shuffle cards
+   - Handle card flipping and matching logic
+   - Count moves and update stats
+   - Detect victory or defeat
+   - Show End screen with custom messages
+
+5. **Connect JS to HTML**
+   - Add event listeners for Start and Restart buttons
+   - Update DOM elements (score, moves, time) dynamically
+
+6. **Test the game**
+   - Verify card flipping works correctly
+   - Ensure moves and timer update properly
+   - Check end game messages for win/lose
+   - Confirm restart works as expected
+
+7. **Optional enhancements (after MVP)**
+   - Add sound effects
+   - Add animations on matching cards
+   - Make the game responsive for mobile devices
+
+
+# Links
 
 - [Trello Link](https://trello.com/invite/b/692c5ae7103c3f4be0449826/ATTIf708b635adc9591cf5c1aeb4eaa3e8bcF1CD3C3C/game-project)
 - [Slides Link](http://slides.com)
 - [Github repository Link](http://github.com)
 - [Deployment Link](http://github.com)
-# dc-memory-game

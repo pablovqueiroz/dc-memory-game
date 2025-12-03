@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #191970;
+  font-family: "Arial", sans-serif;
+}
+
+main {
+  /* position: relative; */
+  background: url(/images/all-heroes.png) no-repeat center center;
+  background-size: cover;
+  box-shadow: 0 4px 8px rgba(77, 80, 216, 0.504);
+  height:470px;
+  width: 500px;
+  margin: 50px auto 0 auto;
+  border-radius: 2px;
+  padding: 20px;
+}
+
+#game-intro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  margin: auto;
+}
+
+#game-intro p {
+  width: 100%;
+  font-family: "Verdana", "Arial", sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #ffffff;
+  text-align: center;
+  margin: 15px auto 40px auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+#logo-img {
+  width: 250px;
+  transition: 300ms;
+}
+
+#logo-img:hover {
+  /* width: 310px;
+  cursor: pointer; */
+}
+
+#logo-img:active {
+  /* transform: translateY(3px); */
+   animation: explode 1s forwards;
+}
+
+#start-button {
+  padding: 5px 15px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #e74c3c;
+  color: white;
+  border: 4px solid black;
+  border-radius: 8px;
+  font-family: "Arial Black", Impact, sans-serif;
+  box-shadow: 5px 5px 0px #f1c40f, 8px 8px 0px #000000;
+  transition: 100ms;
+}
+
+#start-button:hover {
+  background-color: #c0392b;
+  box-shadow: 3px 3px 0px #f1c40f, 5px 5px 0px #000000;
+}
+
+#sound {
+  margin-top: -20px;
+  margin-left: -10px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.688);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sound img {
+  width: 30px;
+  height: auto;
+}
+
+#stats {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  color:white
+  ;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 10px;
+  justify-content: space-evenly;
+  margin-top: 20px;
+
+  perspective: 1000px;
+}
+
+.card {
+  width: 75px;
+  height: 110px;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.front {
+  background-color: white;
+  transform: rotateY(0deg);
+}
+
+.back {
+  background-color: black;
+  transform: rotateY(180deg);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+#game-end {
+  border:  3px solid yellow;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 70%;
+  margin: auto;
+  align-content: center;
+  text-align: center;
+}
+
+#game-end h1 {
+  font-size: 2em;
+  color: #ff0000;
+  text-shadow: 2px 2px 0 black;
+  margin-bottom: 20px;
+}
+
+#game-end p {
+  margin: 0 auto;
+  width: 70%;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+#restart-button {
+padding: 5px 15px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #e74c3c;
+  color: white;
+  border: 4px solid black;
+  border-radius: 8px;
+  font-family: "Arial Black", Impact, sans-serif;
+  box-shadow: 5px 5px 0px #f1c40f, 8px 8px 0px #000000;
+  transition: 100ms;
+}
+
+#restart-button:hover {
+  background-color: #c0392b;
+  box-shadow: 3px 3px 0px #f1c40f, 5px 5px 0px black;
+}
+
+.hero {
+  position: absolute;
+  width: 500px;
+  height: 300px;
+  transform: translateY(-50%);
+}
+
+.hero img {
+  width: 150px;
+  height: 150px;
+  transition: top 0.8s ease, left 0.8s ease; /
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(1.1) translate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5) translate(20px, -20px); /* Move para fora */
+    opacity: 0;
+  }
+}
