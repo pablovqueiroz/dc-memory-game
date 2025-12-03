@@ -1,3 +1,47 @@
+<<<<<<< HEAD
+=======
+
+
+# SKETCH
+
+
+Plano de 3 Dias
+
+# Dia 1
+
+Foco Principal:
+Setup e Lógica Básica Criar HTML/CSS base.
+
+Tarefas Chave:
+Definir os dados dos personagens (array JS).
+Criar a função para embaralhar cartas e renderizar o tabuleiro no ecrã.
+
+Prática de DOM:
+createElement(), appendChild(), addEventListener('click'), textContent.
+
+# Dia 2
+
+Foco Principal:
+Mecânica do Jogo e Feedback.
+
+Tarefas Chave:
+Implementar a lógica de virar cartas, verificar pares, contar jogadas e gerir o game over.
+Adicionar placar e timer.
+
+Prática de DOM:
+classList.add()/remove(), innerHTML (para placar), setTimeout() (para virar cartas de volta).
+
+# Dia 3
+
+Foco Principal:
+Estilo, Animações e Destaque.
+
+Tarefas Chave:
+Adicionar imagens dos heróis DC, estilizar o tabuleiro, adicionar animações CSS bonitas (virar a carta), e um ecrã de vitória final.
+
+Prática de DOM:
+Manipulação de style ou classes para animações, uso de imagens em elementos.
+>>>>>>> 069d2593edf56ae472ffc6a82416cf0c96efdf03
 
 
 
