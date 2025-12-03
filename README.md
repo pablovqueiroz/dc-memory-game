@@ -1,70 +1,26 @@
-<<<<<<< HEAD
-=======
-
-
-# SKETCH
-
-
-Plano de 3 Dias
-
-# Dia 1
-
-Foco Principal:
-Setup e Lógica Básica Criar HTML/CSS base.
-
-Tarefas Chave:
-Definir os dados dos personagens (array JS).
-Criar a função para embaralhar cartas e renderizar o tabuleiro no ecrã.
-
-Prática de DOM:
-createElement(), appendChild(), addEventListener('click'), textContent.
-
-# Dia 2
-
-Foco Principal:
-Mecânica do Jogo e Feedback.
-
-Tarefas Chave:
-Implementar a lógica de virar cartas, verificar pares, contar jogadas e gerir o game over.
-Adicionar placar e timer.
-
-Prática de DOM:
-classList.add()/remove(), innerHTML (para placar), setTimeout() (para virar cartas de volta).
-
-# Dia 3
-
-Foco Principal:
-Estilo, Animações e Destaque.
-
-Tarefas Chave:
-Adicionar imagens dos heróis DC, estilizar o tabuleiro, adicionar animações CSS bonitas (virar a carta), e um ecrã de vitória final.
-
-Prática de DOM:
-Manipulação de style ou classes para animações, uso de imagens em elementos.
->>>>>>> 069d2593edf56ae472ffc6a82416cf0c96efdf03
-
-
-
 # DC MEMORY GAME
 
 ## [Play the Game!]()
 
-![Game Logo]()
+![Game Logo](/images/game-logo.png)
 
 # Description
 
-DC Memory Game is a browser-based memory matching game where players test their memory by flipping cards to find matching pairs of DC heroes. The game challenges players to match all pairs before running out of moves or time. At the end of the game, a score is calculated based on the number of successful matches and remaining moves or time. Players can restart the game to try and improve their score.
+DC Memory Game is a browser-based memory matching game where players test their memory by flipping cards to find matching pairs of DC heroes. The game challenges players to match all pairs before running out of moves or time. At the end of the game, a score is calculated based on the number of successful matches and remaining moves or time. Players can restart the game to try and improve their score.  
+
+The game also features a hidden **Easter Egg** where DC heroes animate across the screen when the logo is clicked three times.
 
 # Main Functionalities
 
-- The player clicks Start Game.
-- The #game-intro screen disappears, and #game-screen appears.
-- The Game class creates the game board (cards) and starts the timer.
+- The player clicks **Start Game**.
+- The `#game-intro` screen disappears, and `#game-screen` appears.
+- The `Game` class creates the game board (cards) and starts the timer.
 - The player clicks on the cards.
 - Stats (Score, Moves, Time) are updated in real time.
-- When all cards are matched or time runs out, endGame() is called:
-  #game-screen hides.
-  #game-end appears with the final score.
+- When all cards are matched or time runs out, `endGame()` is called:
+  - `#game-screen` hides.
+  - `#game-end` appears with the final score.
+- Clicking the game logo three times triggers the Easter Egg animation with sound.
 
 # Minimum Viable Product (MVP)
 
@@ -79,13 +35,14 @@ The minimum features required for this DC Memory Game are:
 - Score counter that increases when pairs are matched and decreases slightly when mismatched.
 - Game over screen showing the final score and a message indicating whether the player won or lost.
 - Restart button to replay the game.
+- Easter Egg animation for extra fun.
 
 # Backlog
 
 These are features I can implement after completing the MVP:
 
 - Make the game fully responsive for mobile and tablet devices.
-- Include sound effects for card flips, matches, and game win/loss events.
+- Include additional sound effects for card flips, matches, and game win/loss events.
 - Add theme variations (different backgrounds or hero sets).
 - Add more card pairs and heroes for increased difficulty.
 - Implement a high-score leaderboard to track top scores.
@@ -96,6 +53,8 @@ These are features I can implement after completing the MVP:
 - CSS
 - JavaScript
 - DOM Manipulation
+- Audio API
+- CSS animations
 
 # Data structure
 
@@ -111,11 +70,19 @@ The `Game` class manages a memory card game with character cards.
 - `score` — Current player score.
 - `moves` — Number of remaining moves.
 - `remainingTime` — Remaining time on the timer.
-- `timerId` — ID of the timer used with `setInterval`.S
+- `timerId` — ID of the timer used with `setInterval`.
 - `lockBoard` — Boolean that temporarily locks the board.
-- `characters` — Array of available characters.
-- `gameCharacters` — Array with duplicated characters for matching pairs.
-
+- `boardSound` — Background board audio.
+- `boardSound.volume` — Volume of the board sound.
+- `flipSound` — Flip card sound.
+- `flipSound.volume` — Volume of flip sound.
+- `loseSound` — Sound for losing.
+- `loseSound.volume` — Volume of lose sound.
+- `winSound` — Sound for winning.
+- `winSound.volume` — Volume of win sound.
+- `isSoundOn` — Boolean toggle for sounds.
+- `characters` — Array of hero names.
+- `gameCharacters` — Duplicated and shuffled array of characters for gameplay.
 
 ## Methods
 
@@ -151,17 +118,17 @@ Ends the game, showing a victory or defeat screen and the final score.
 
 Restarts the game, resetting all variables, reinitializing the board, and restarting the timer.
 
-## Fuction
+## Function
 
-### `marvelHeroes()` 
+### `marvelHeroes()`
 
-- To play the easter egg.
+- Triggers the Easter Egg animation of DC heroes.
 
 # script.js
 
 ## Game Initialization and DOM Handling
 
-This script handles the game's start, restart, and user interface interactions.
+This script handles the game's start, restart, sound toggle, logo clicks, and UI interactions.
 
 ## Elements
 
@@ -170,12 +137,21 @@ This script handles the game's start, restart, and user interface interactions.
 - `introScreen` — The initial introduction screen element.
 - `gameScreen` — The main game screen element.
 - `endScreen` — The game over / victory screen element.
+- `imgLogo` — Game logo element, used for Easter Egg.
+- `musicButton` — Button to toggle sound/music.
+- `musicIcon` — Image inside music button.
+- `introMusic` — Intro music audio object.
+- `introMusic.volume` — Volume of intro music.
 - `game` — Instance of the `Game` class.
+- `easterEgg` — Instance of `EasterEgg`.
+- `clickCount` — Counts clicks on logo for Easter Egg.
 
 ## Event Listeners
 
 - `startButton` — Starts the game when clicked by calling `startGame()`.
 - `restartButton` — Restarts the game when clicked by calling `resetGame()`.
+- `musicButton` — Toggles background and board music.
+- `imgLogo` — Click to increment Easter Egg counter.
 
 ## Functions
 
@@ -185,13 +161,18 @@ This script handles the game's start, restart, and user interface interactions.
 - Creates a new instance of `Game`.
 - Updates the UI with initial `moves`, `score`, and `remainingTime`.
 - Shuffles the cards, initializes the game board, shows a preview of all cards, and starts the timer.
+- Handles sound playback depending on user toggle.
 
 ### `resetGame()`
 
 - Hides the end screen and shows the game screen.
 - Calls the `restartGame()` method on the current `Game` instance to reset the game state.
 
-# States y States Transitions
+### `playEasterEgg()`
+
+- Calls `DcComicsRuns()` from the `EasterEgg` class.
+
+# States and State Transitions
 
 The game has the following states (views):
 
@@ -211,54 +192,53 @@ The game has the following states (views):
    - Shows a final score and a message (e.g., "Congratulations!" or "Game Over").
    - Player can click "Restart Game" to go back to the Game Screen and start a new game.
 
-
 # Task
 
 List of tasks in order of priority:
 
 1. **Set up project structure**
    - Create folders: `images`, `css`, `js`
-   - Create files: `index.html`, `style.css`, `game.js`, `script.js`
+   - Create files: `index.html`, `style.css`, `game.js`, `script.js`, `easteregg.js`
 
 2. **Design the HTML layout**
-   - Intro screen with logo, start button, and subtitle
-   - Game screen with stats (score, moves, timer) and game board
-   - End screen with final score, message, and restart button
+   - Intro screen with logo, start button, and subtitle.
+   - Game screen with stats (score, moves, timer) and game board.
+   - End screen with final score, message, and restart button.
 
 3. **Style the game using CSS**
-   - Layout and positioning
-   - Card dimensions, grid, and 3D flip animation
-   - Intro and End screen styling
-   - Responsive design adjustments
+   - Layout and positioning.
+   - Card dimensions, grid, and 3D flip animation.
+   - Intro and End screen styling.
+   - Responsive design adjustments.
 
 4. **Implement game logic in JavaScript**
-   - Create `Game` class
-   - Define properties (score, moves, timer, flipped cards)
-   - Initialize game board and shuffle cards
-   - Handle card flipping and matching logic
-   - Count moves and update stats
-   - Detect victory or defeat
-   - Show End screen with custom messages
+   - Create `Game` class.
+   - Define properties (score, moves, timer, flipped cards, sounds).
+   - Initialize game board and shuffle cards.
+   - Handle card flipping and matching logic.
+   - Count moves and update stats.
+   - Detect victory or defeat.
+   - Implement Easter Egg animation.
 
 5. **Connect JS to HTML**
-   - Add event listeners for Start and Restart buttons
-   - Update DOM elements (score, moves, time) dynamically
+   - Add event listeners for Start, Restart buttons, music toggle, and Easter Egg.
+   - Update DOM elements (score, moves, time) dynamically.
 
 6. **Test the game**
-   - Verify card flipping works correctly
-   - Ensure moves and timer update properly
-   - Check end game messages for win/lose
-   - Confirm restart works as expected
+   - Verify card flipping works correctly.
+   - Ensure moves and timer update properly.
+   - Check end game messages for win/lose.
+   - Confirm restart works as expected.
+   - Test Easter Egg animation.
 
 7. **Optional enhancements (after MVP)**
-   - Add sound effects
-   - Add animations on matching cards
-   - Make the game responsive for mobile devices
-
+   - Add sound effects.
+   - Add animations on matching cards.
+   - Make the game responsive for mobile devices.
 
 # Links
 
-- [Trello Link](https://trello.com/invite/b/692c5ae7103c3f4be0449826/ATTIf708b635adc9591cf5c1aeb4eaa3e8bcF1CD3C3C/game-project)
-- [Slides Link](http://slides.com)
-- [Github repository Link](http://github.com)
-- [Deployment Link](http://github.com)
+- [Trello Link]()
+- [Slides Link]()
+- [GitHub Repository Link]()
+- [Deployment Link]()
