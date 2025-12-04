@@ -14,8 +14,8 @@ main {
   background: url(images/allheroes.png) no-repeat center center;
   background-size: cover;
   box-shadow: 0 4px 8px rgba(77, 80, 216, 0.504);
-  height:470px;
-  width: 500px;
+  height:570px;
+  width: 600px;
   margin: 50px auto 0 auto;
   border-radius: 2px;
   padding: 20px;
@@ -32,7 +32,7 @@ main {
 }
 
 #game-intro p {
-  width: 100%;
+  width: 80%;
   font-family: "Verdana", "Arial", sans-serif;
   font-size: 1em;
   font-weight: bold;
@@ -50,10 +50,10 @@ main {
   transition: 300ms;
 }
 
-#logo-img:hover {
+/* #logo-img:hover {
   /* width: 310px;
-  cursor: pointer; */
-}
+  cursor: pointer; 
+} */
 
 #logo-img:active {
   /* transform: translateY(3px); */
@@ -106,7 +106,7 @@ main {
 
 #game-board {
   display: grid;
-  grid-template-columns: repeat(4, 80px);
+  grid-template-columns: repeat(4, 96px);
   gap: 10px;
   justify-content: space-evenly;
   margin-top: 20px;
@@ -114,8 +114,8 @@ main {
 }
 
 .card {
-  width: 75px;
-  height: 110px;
+  width: 100px;
+  height: 150px;
   cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
@@ -208,8 +208,9 @@ padding: 5px 15px;
 
 .hero {
   position: absolute;
-  width: 500px;
-  height: 300px;
+  margin: 150px;
+  width: 400px;
+  height: 600px;
   transform: translateY(-50%);
 }
 
@@ -219,13 +220,39 @@ padding: 5px 15px;
   transition: top 0.8s ease, left 0.8s ease;
 }
 
+#comic-balloon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffdc00;
+  color: #000000;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.5em;
+  padding: 15px 25px;
+  border: 4px solid #000;
+  border-radius: 25px;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.8s ease-out;
+}
+
+#comic-balloon.show {
+  opacity: 1;
+  transform: translate(-50%, -200%);
+}
+
+
 @keyframes explode {
   0% {
     transform: scale(1.1) translate(0);
     opacity: 1;
   }
   100% {
-    transform: scale(0.5) translate(20px, -20px); /* Move para fora */
+    transform: scale(0.5) translate(20px, -20px);
     opacity: 0;
   }
 }

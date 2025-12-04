@@ -21,6 +21,7 @@ The game also features a hidden **Easter Egg** where DC heroes animate across th
   - `#game-screen` hides.
   - `#game-end` appears with the final score.
 - Clicking the game logo three times triggers the Easter Egg animation with sound.
+- Tracks the **last 5 game scores** (moves, time, final score) dynamically.
 
 # Minimum Viable Product (MVP)
 
@@ -36,6 +37,7 @@ The minimum features required for this DC Memory Game are:
 - Game over screen showing the final score and a message indicating whether the player won or lost.
 - Restart button to replay the game.
 - Easter Egg animation for extra fun.
+- Display of **last 5 game scores**.
 
 # Backlog
 
@@ -83,6 +85,7 @@ The `Game` class manages a memory card game with character cards.
 - `isSoundOn` — Boolean toggle for sounds.
 - `characters` — Array of hero names.
 - `gameCharacters` — Duplicated and shuffled array of characters for gameplay.
+- `lastFiveScores` — Array storing the last 5 game scores.
 
 ## Methods
 
@@ -112,17 +115,44 @@ Starts the game timer, decrementing `remainingTime` every second.
 
 ### `endGame(victory = false)`
 
-Ends the game, showing a victory or defeat screen and the final score.
+Ends the game, showing a victory or defeat screen and the final score. Updates the `lastFiveScores` array.
 
 ### `restartGame()`
 
 Restarts the game, resetting all variables, reinitializing the board, and restarting the timer.
+
+### `showComicBalloon(message)`
+
+Displays a comic-style balloon animation on the screen for 1 second with a custom message.  
+
+- `message` — A string that will appear inside the balloon (e.g., "No moves enough!" or "Time's Up!").  
+- The balloon floats upward in a comic vintage style, fading out as it rises.  
+- Used in `endGame()` when the player runs out of moves or time to give visual feedback before showing the end screen.  
+- Can be reused for other temporary alerts or messages during the game.
 
 ## Function
 
 ### `marvelHeroes()`
 
 - Triggers the Easter Egg animation of DC heroes.
+
+## easteregg.js
+
+### Class `EasterEgg`
+
+The `EasterEgg` class handles the animation of DC heroes across the intro screen when the game logo is clicked three times.
+
+### Properties
+
+- `DcComicsHeroes` — Array of hero names used in the Easter Egg (`["batmanegg", "flashegg", "greenlanternegg", "shazanegg", "supermanegg","wonderwomanegg"]`).
+- `clickSound` — Audio object for click sound.
+- `clickSound.volume` — Volume of click sound.
+- `directions` — Array of direction objects `{dx, dy}` for hero animation.
+
+### Methods
+
+- `shuffleDcComicsArray()` — Shuffles the `DcComicsHeroes` array using the Durstenfeld algorithm.
+- `DcComicsRuns()` — Creates hero `div` elements dynamically, appends them to `#game-intro`, and animates them moving across the screen. Each hero moves according to its assigned direction and is removed when offscreen.
 
 # script.js
 
@@ -172,6 +202,41 @@ This script handles the game's start, restart, sound toggle, logo clicks, and UI
 
 - Calls `DcComicsRuns()` from the `EasterEgg` class.
 
+# Media
+
+## Screenshots
+
+- Intro Screen:
+  ![Intro Screen](images/intro-screen.png)
+
+- Game Screen:
+  ![Game Screen](images/game-screen.png)
+
+- Game Screen:
+  ![Game Screen](images/game-screen2.png)
+
+- End Screen:
+  ![End Screen](images/end-screen.png)
+
+- Easter Egg:
+  ![Easter Egg](images/easter-egg-demo.gif)
+
+## Videos
+
+- [Gameplay Video](videos/gameplay.mp4)
+
+# Last 5 Scores
+
+| Game # | Score | Moves | Time Remaining |
+|--------|-------|-------|----------------|
+| 1      | 0     | 0     | 0s             |
+| 2      | 0     | 0     | 0s             |
+| 3      | 0     | 0     | 0s             |
+| 4      | 0     | 0     | 0s             |
+| 5      | 0     | 0     | 0s             |
+
+*(These fields are dynamically updated by the Game class during play.)*
+
 # States and State Transitions
 
 The game has the following states (views):
@@ -197,7 +262,7 @@ The game has the following states (views):
 List of tasks in order of priority:
 
 1. **Set up project structure**
-   - Create folders: `images`, `css`, `js`
+   - Create folders: `images`, `css`, `js`, `videos`
    - Create files: `index.html`, `style.css`, `game.js`, `script.js`, `easteregg.js`
 
 2. **Design the HTML layout**
@@ -213,7 +278,7 @@ List of tasks in order of priority:
 
 4. **Implement game logic in JavaScript**
    - Create `Game` class.
-   - Define properties (score, moves, timer, flipped cards, sounds).
+   - Define properties (score, moves, timer, flipped cards, sounds, lastFiveScores).
    - Initialize game board and shuffle cards.
    - Handle card flipping and matching logic.
    - Count moves and update stats.
@@ -222,7 +287,7 @@ List of tasks in order of priority:
 
 5. **Connect JS to HTML**
    - Add event listeners for Start, Restart buttons, music toggle, and Easter Egg.
-   - Update DOM elements (score, moves, time) dynamically.
+   - Update DOM elements (score, moves, time, last 5 scores) dynamically.
 
 6. **Test the game**
    - Verify card flipping works correctly.
@@ -238,6 +303,6 @@ List of tasks in order of priority:
 
 # Links
 
-- [Slides Link]()
+- [Slides Link](https://docs.google.com/presentation/d/1weuVtdXMSHDTeZq_vHdtivARVmtPQ7A2HZbRPiA2L7w/edit?usp=sharing)
 - [GitHub Repository Link](https://github.com/pablovqueiroz/dc-memory-game)
 - [Deployment Link](https://pablovqueiroz.github.io/dc-memory-game/)

@@ -2,6 +2,7 @@ class EasterEgg {
   constructor() {
     this.DcComicsHeroes = ["batmanegg", "flashegg", "greenlanternegg", "shazanegg", "supermanegg","wonderwomanegg"];
     this.clickSound = new Audio("assets/crash.mp3");
+    this.clickSound.volume = 0.1;
     this.directions = [
       { dx: 3, dy: -2 }, 
       { dx: 3, dy: 2 }, 

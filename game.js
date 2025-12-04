@@ -27,6 +27,10 @@ class Game {
     this.gameCharacters = [...this.characters, ...this.characters];
   }
 
+  get remainingCards() {
+    return document.querySelectorAll(".card:not(.matched)");
+  }
+
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
   shuffleArray() {
     function shuffleArray(array) {
@@ -91,6 +95,9 @@ class Game {
 
   flipCard(card) {
     card.addEventListener("click", () => {
+      if (this.flippedCards.includes(card)) return;
+      if (card.classList.contains("matched")) return;
+
       if (this.lockBoard === true) {
         return;
       }
@@ -127,26 +134,31 @@ class Game {
 
     if (card1.dataset.character === card2.dataset.character) {
       this.score++;
-      this.flippedCards = [];
+      card1.classList.add("matched");
+      card2.classList.add("matched");
       console.log("Match!");
-      const remainingCards = document.querySelectorAll(".card:not(.flipped)");
-
-      if (remainingCards.length === 0) {
-        this.endGame(true);
-      }
     } else {
-      this.lockBoard = true;
       this.score = Math.max(0, this.score - 0.5);
+      this.lockBoard = true;
       setTimeout(() => {
         card1.classList.remove("flipped");
         card2.classList.remove("flipped");
-        this.flippedCards = [];
         this.lockBoard = false;
       }, 1000);
       console.log("don't match!");
     }
 
     document.getElementById("score").innerText = this.score;
+
+    if (this.remainingCards.length === 0) {
+      setTimeout(() => this.endGame(true), 1000);
+    } else if (this.moves < this.remainingCards.length) {
+      this.showComicBalloon("No moves enough!");
+      setTimeout(() => this.endGame(false), 1200);
+      console.log("no moves remaining");
+    }
+
+    this.flippedCards = [];
   }
 
   startTimer() {
@@ -157,9 +169,10 @@ class Game {
 
         if (this.remainingTime <= 0) {
           clearInterval(this.timerId);
+          this.showComicBalloon("Time's Up!")
           this.endGame(false);
         }
-      }, 1000);
+      }, 1200);
       console.log("timer starts!!!");
     }, 3000);
     console.log("timer starts in 3s");
@@ -176,7 +189,7 @@ class Game {
     endScreen.style.display = "block";
 
     const finalScoreEl = document.getElementById("final-score");
-    finalScoreEl.innerText = this.score.toFixed(1);
+    finalScoreEl.innerText = this.score;
 
     const endMessage = document.getElementById("end-message");
     if (victory) {
@@ -227,5 +240,15 @@ class Game {
     else this.boardSound.pause();
 
     console.log("game restarted...");
+  }
+
+  showComicBalloon(message) {
+    const balloon = document.getElementById("comic-balloon");
+    balloon.innerText = message;
+    balloon.classList.add("show");
+
+    setTimeout(() => {
+      balloon.classList.remove("show");
+    }, 1200);
   }
 }
