@@ -21,7 +21,6 @@ The game also features a hidden **Easter Egg** where DC heroes animate across th
   - `#game-screen` hides.
   - `#game-end` appears with the final score.
 - Clicking the game logo three times triggers the Easter Egg animation with sound.
-- Tracks the **last 5 game scores** (moves, time, final score) dynamically.
 
 # Minimum Viable Product (MVP)
 
@@ -37,7 +36,6 @@ The minimum features required for this DC Memory Game are:
 - Game over screen showing the final score and a message indicating whether the player won or lost.
 - Restart button to replay the game.
 - Easter Egg animation for extra fun.
-- Display of **last 5 game scores**.
 
 # Backlog
 
@@ -85,7 +83,6 @@ The `Game` class manages a memory card game with character cards.
 - `isSoundOn` — Boolean toggle for sounds.
 - `characters` — Array of hero names.
 - `gameCharacters` — Duplicated and shuffled array of characters for gameplay.
-- `lastFiveScores` — Array storing the last 5 game scores.
 
 ## Methods
 
@@ -115,7 +112,7 @@ Starts the game timer, decrementing `remainingTime` every second.
 
 ### `endGame(victory = false)`
 
-Ends the game, showing a victory or defeat screen and the final score. Updates the `lastFiveScores` array.
+Ends the game, showing a victory or defeat screen and the final score.
 
 ### `restartGame()`
 
@@ -219,23 +216,12 @@ This script handles the game's start, restart, sound toggle, logo clicks, and UI
   ![End Screen](images/end-screen.png)
 
 - Easter Egg:
-  ![Easter Egg](images/easter-egg-demo.gif)
+  ![Easter Egg](videos/easter-egg-demo.gif)
 
 ## Videos
 
 - [Gameplay Video](videos/gameplay.mp4)
 
-# Last 5 Scores
-
-| Game # | Score | Moves | Time Remaining |
-|--------|-------|-------|----------------|
-| 1      | 0     | 0     | 0s             |
-| 2      | 0     | 0     | 0s             |
-| 3      | 0     | 0     | 0s             |
-| 4      | 0     | 0     | 0s             |
-| 5      | 0     | 0     | 0s             |
-
-*(These fields are dynamically updated by the Game class during play.)*
 
 # States and State Transitions
 
@@ -278,7 +264,7 @@ List of tasks in order of priority:
 
 4. **Implement game logic in JavaScript**
    - Create `Game` class.
-   - Define properties (score, moves, timer, flipped cards, sounds, lastFiveScores).
+   - Define properties (score, moves, timer, flipped cards, sounds).
    - Initialize game board and shuffle cards.
    - Handle card flipping and matching logic.
    - Count moves and update stats.
@@ -287,7 +273,7 @@ List of tasks in order of priority:
 
 5. **Connect JS to HTML**
    - Add event listeners for Start, Restart buttons, music toggle, and Easter Egg.
-   - Update DOM elements (score, moves, time, last 5 scores) dynamically.
+   - Update DOM elements (score, moves, time) dynamically.
 
 6. **Test the game**
    - Verify card flipping works correctly.
