@@ -112,7 +112,7 @@ class Game {
       this.moves--;
       document.getElementById("moves").innerText = this.moves;
 
-      if (this.moves <= 0) {
+      if (this.moves < 0) {
         this.lockBoard = true;
         setTimeout(() => {
           this.endGame(false);
