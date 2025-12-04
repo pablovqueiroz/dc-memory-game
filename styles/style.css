@@ -11,7 +11,7 @@ body {
 
 main {
   /* position: relative; */
-  background: url(images/allheroes.png) no-repeat center center;
+  background: url(../images/allheroes.png) no-repeat center center;
   background-size: cover;
   box-shadow: 0 4px 8px rgba(77, 80, 216, 0.504);
   height:570px;
