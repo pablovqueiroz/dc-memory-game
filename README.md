@@ -12,15 +12,28 @@ The game also features a hidden **Easter Egg** where DC heroes animate across th
 
 # Main Functionalities
 
+- Player selects a difficulty level: **Easy**, **Normal**, or **Hard**.
 - The player clicks **Start Game**.
 - The `#game-intro` screen disappears, and `#game-screen` appears.
-- The `Game` class creates the game board (cards) and starts the timer.
-- The player clicks on the cards.
-- Stats (Score, Moves, Time) are updated in real time.
-- When all cards are matched or time runs out, `endGame()` is called:
+- The `Game` class creates the game board (cards), shuffles them, shows a 3-second preview, and starts the timer.
+- The player clicks on cards to flip them.
+- Stats (Score, Moves, Time) update in real time.
+- If two flipped cards match, the score increases; if not, the cards flip back and score decreases slightly.
+- When all cards are matched or moves/time run out:
   - `#game-screen` hides.
-  - `#game-end` appears with the final score.
-- Clicking the game logo three times triggers the Easter Egg animation with sound.
+  - `#game-end` appears with the final score and a win/lose message.
+- Players can **Restart Game** to reset everything and play again.
+- Clicking the game logo three times triggers an **Easter Egg animation** with sound.
+- Comic-style floating balloon messages show alerts like "No moves enough!" or "Time's Up!"
+
+# Difficulty Levels
+
+| Level  | Moves | Time (s) |
+|--------|-------|-----------|
+| Easy   | 24    | 80        |
+| Normal | 20    | 60        |
+| Hard   | 16    | 50        |
+
 
 # Minimum Viable Product (MVP)
 
@@ -113,10 +126,6 @@ Starts the game timer, decrementing `remainingTime` every second.
 ### `endGame(victory = false)`
 
 Ends the game, showing a victory or defeat screen and the final score.
-
-### `restartGame()`
-
-Restarts the game, resetting all variables, reinitializing the board, and restarting the timer.
 
 ### `showComicBalloon(message)`
 
@@ -282,10 +291,41 @@ List of tasks in order of priority:
    - Confirm restart works as expected.
    - Test Easter Egg animation.
 
-7. **Optional enhancements (after MVP)**
-   - Add sound effects.
-   - Add animations on matching cards.
-   - Make the game responsive for mobile devices.
+
+# Recent Updates
+
+## New Features
+
+- **Difficulty Levels**
+  - Players can now select **Easy**, **Normal**, or **Hard** before starting.
+  - Each difficulty adjusts:
+    - **Easy:** 24 moves, 80 seconds.
+    - **Normal:** 20 moves, 60 seconds.
+    - **Hard:** 16 moves, 50 seconds.
+
+- **Comic Balloon Notifications**
+  - Shows messages like `"No moves enough!"` or `"Time's Up!"` during gameplay.
+  - Implemented with `showComicBalloon(message)` in `game.js`.
+  - Floats upward in comic-style and fades out.
+
+- **Game Preview**
+  - At the start, all cards flip for 3 seconds to preview positions.
+
+- **Sound Management**
+  - Background and board music toggle correctly with the music button.
+  - Flip, win, and lose sounds play only if sound is enabled.
+  - Intro music pauses when gameplay starts.
+
+- **Restart Game**
+  - Restart button fully resets score, moves, timer, board, and sound states.
+  - Works with all difficulty levels and preserves sound settings.
+
+- **Timer Adjustment**
+  - Timer starts after the 3-second preview.
+  - Counts down every 1.2 seconds for sync with gameplay.
+
+- **Easter Egg**
+  - Clicking the logo 3 times triggers DC heroes animation with sound.
 
 # Links
 

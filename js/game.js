@@ -208,39 +208,39 @@ class Game {
     console.log("End Game...");
   }
 
-  restartGame() {
-    this.boardSound.currentTime = 0;
-    this.boardSound.play();
-    clearInterval(this.timerId);
-    this.flippedCards = [];
-    this.score = 0;
-    this.moves = 20;
-    this.remainingTime = 60;
-    this.lockBoard = false;
+  // restartGame() {
+  //   this.boardSound.currentTime = 0;
+  //   this.boardSound.play();
+  //   clearInterval(this.timerId);
+  //   this.flippedCards = [];
+  //   this.score = 0;
+  //   this.moves = 20;
+  //   this.remainingTime = 60;
+  //   this.lockBoard = false;
 
-    document.getElementById("score").innerText = this.score;
-    document.getElementById("moves").innerText = this.moves;
-    document.getElementById("game-board").innerHTML = "";
+  //   document.getElementById("score").innerText = this.score;
+  //   document.getElementById("moves").innerText = this.moves;
+  //   document.getElementById("game-board").innerHTML = "";
 
-    const gameScreen = document.getElementById("game-screen");
-    const endScreen = document.getElementById("game-end");
+  //   const gameScreen = document.getElementById("game-screen");
+  //   const endScreen = document.getElementById("game-end");
 
-    endScreen.style.display = "none";
-    gameScreen.style.display = "block";
+  //   endScreen.style.display = "none";
+  //   gameScreen.style.display = "block";
 
-    this.initBoard();
-    this.showPreview();
-    this.startTimer();
+  //   this.initBoard();
+  //   this.showPreview();
+  //   this.startTimer();
 
-    this.winSound.pause();
-    this.loseSound.pause();
-    this.boardSound.pause();
+  //   this.winSound.pause();
+  //   this.loseSound.pause();
+  //   this.boardSound.pause();
 
-    if (this.isSoundOn) this.boardSound.play();
-    else this.boardSound.pause();
+  //   if (this.isSoundOn) this.boardSound.play();
+  //   else this.boardSound.pause();
 
-    console.log("game restarted...");
-  }
+  //   console.log("game restarted...");
+  // }
 
   showComicBalloon(message) {
     const balloon = document.getElementById("comic-balloon");

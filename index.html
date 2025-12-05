@@ -4,15 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/style.css" />
     <title>DC Memory Game</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png" />
   </head>
   <body>
     <main>
       <div id="game-intro">
         <img src="images/gamelogo.png" alt="logo-game" id="logo-img" />
         <button id="start-button">Start Game</button>
+
+        <section id="difficulties-container">
+
+          <label class="difficulty-option">
+            <input type="radio" name="difficulty" value="easy" />
+            Easy
+          </label>
+
+          <label class="difficulty-option">
+            <input type="radio" name="difficulty" value="normal" checked/>
+            Normal
+          </label>
+
+          <label class="difficulty-option">
+            <input type="radio" name="difficulty" value="hard" />
+            Hard
+          </label>
+        </section>
+
         <p class="subtitle-comic">Strengthen your memory with DC heroes!</p>
       </div>
 
@@ -32,11 +51,12 @@
       </div>
 
       <div>
-        <button id="sound"><img src="images/musicoff.png" alt="music-off" id= "music-icon"></button>
+        <button id="sound">
+          <img src="images/musicoff.png" alt="music-off" id="music-icon" />
+        </button>
       </div>
-
     </main>
-    
+
     <div id="comic-balloon" class="hidden">Out of Moves!</div>
 
     <script src="js/game.js"></script>

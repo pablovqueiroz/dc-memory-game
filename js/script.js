@@ -8,12 +8,12 @@ window.onload = function () {
   const musicButton = document.getElementById("sound");
   const musicIcon = document.getElementById("music-icon");
   const introMusic = new Audio("assets/intromusic.mp3");
-  introMusic.volume = .1
+  introMusic.volume = 0.1;
 
   let game;
+  let selectedDifficulty = "normal";
   let easterEgg = new EasterEgg();
   let clickCount = 0;
- 
 
   startButton.addEventListener("click", function () {
     startGame();
@@ -21,8 +21,11 @@ window.onload = function () {
   });
 
   restartButton.addEventListener("click", function () {
-    resetGame();
     introMusic.pause();
+    game.loseSound.pause();
+    game.winSound.pause();
+    resetGame();
+   
   });
 
   musicButton.addEventListener("click", function () {
@@ -49,6 +52,7 @@ window.onload = function () {
       musicIcon.src = "images/musicoff.png";
       game.isSoundOn = false;
     }
+
   });
 
   imgLogo.addEventListener("click", function () {
@@ -62,10 +66,38 @@ window.onload = function () {
   });
 
   function startGame() {
+    const difficultyOption = document.querySelector(
+      'input[name="difficulty"]:checked'
+    );
+    selectedDifficulty = difficultyOption ? difficultyOption.value : "normal";
+
     introScreen.style.display = "none";
     gameScreen.style.display = "block";
+    endScreen.style.display = "none";
 
     game = new Game();
+
+    game.winSound.pause();
+    game.loseSound.pause();
+    game.boardSound.pause();
+
+    if (game.isSoundOn) game.boardSound.play();
+    else game.boardSound.pause();
+
+    if (selectedDifficulty === "easy") {
+      game.moves = 24;
+      game.remainingTime = 80;
+      console.log("difficulty: easy");
+    } else if (selectedDifficulty === "normal") {
+      game.moves = 20;
+      console.log("difficulty: normal");
+      game.remainingTime = 60;
+    } else if (selectedDifficulty === "hard") {
+      game.moves = 16;
+      console.log("difficulty: hard");
+      game.remainingTime = 50;
+    }
+
     document.getElementById("moves").textContent = game.moves;
     document.getElementById("score").textContent = game.score;
     document.getElementById("time").textContent = game.remainingTime;
@@ -86,7 +118,8 @@ window.onload = function () {
   }
 
   function resetGame() {
-    game.restartGame();
+    startGame();
+    console.log("game restarted...");
   }
 
   function playEasterEgg() {
